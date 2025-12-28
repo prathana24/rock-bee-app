@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgLight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Rock Bee Colony"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/primaryDark"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- AI CAMERA -->
+        <Button
+            android:id="@+id/btnAIDetect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture &amp; AI Detect"
+            android:textStyle="bold"
+            android:textColor="@color/primaryDark"
+            android:backgroundTint="@color/primaryYellow"/>
+
+        <!-- AI RESULT -->
+        <TextView
+            android:id="@+id/txtAIDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AI Detection Result:\nNot detected"
+            android:textColor="@color/primaryDark"
+            android:background="@color/cardLight"
+            android:padding="12dp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- LOCATION -->
+        <Button
+            android:id="@+id/btnLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture Location"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/secondaryGreen"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/txtLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location: Not captured"
+            android:textColor="@color/primaryDark"
+            android:layout_marginTop="8dp"/>
+
+        <!-- AR HEIGHT -->
+        <Button
+            android:id="@+id/btnARHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AR Height Estimator"
+            android:textColor="@color/primaryDark"
+            android:backgroundTint="@color/primaryYellow"
+            android:layout_marginTop="16dp"/>
+
+        <!-- SAVE -->
+        <Button
+            android:id="@+id/btnSaveColony"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Colony"
+            android:textStyle="bold"
+            android:textColor="@color/primaryDark"
+            android:backgroundTint="@color/primaryYellow"
+            android:layout_marginTop="24dp"/>
+        <!-- BEE SOUND DETECTION -->
+        <Button
+            android:id="@+id/btnSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detect Bee Sound"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/secondaryGreen"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/txtSoundDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sound Details: Not detected"
+            android:textColor="@color/primaryDark"
+            android:background="@color/cardLight"
+            android:padding="12dp"
+            android:layout_marginTop="8dp"/>
+        <!-- GALLERY IMAGE -->
+        <Button
+            android:id="@+id/btnGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Image from Gallery"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+    </LinearLayout>
+</ScrollView>

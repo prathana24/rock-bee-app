@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.RockBeeAlert" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- default theme only -->
+    </style>
+
+</resources>

@@ -1,13 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Primary Brand Colors -->
-    <color name="primaryYellow">#FBC02D</color>   <!-- Honey yellow -->
-    <color name="primaryDark">#212121</color>     <!-- Dark text -->
-    <color name="secondaryGreen">#2E7D32</color>  <!-- Success / nature -->
-    <color name="dangerRed">#C62828</color>       <!-- Emergency -->
+    <color name="bgLight">#FFFDF7</color>
+    <color name="cardLight">#FFFFFF</color>
 
-    <!-- Backgrounds -->
-    <color name="bgLight">#FFFFFF</color>
-    <color name="cardLight">#FFF8E1</color>
+    <color name="primaryDark">#3E2723</color>
+    <color name="primaryYellow">#FFC107</color>
+
+    <color name="secondaryGreen">#2E7D32</color>
 
 </resources>

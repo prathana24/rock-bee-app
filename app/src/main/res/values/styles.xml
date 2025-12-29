@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Main App Theme -->
     <style name="Theme.RockBeeAlert" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- default theme only -->
+        <!-- Primary colors -->
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryVariant">#FFA000</item>
+        <item name="colorOnPrimary">#000000</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">#2E7D32</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">#FFA000</item>
     </style>
 
 </resources>

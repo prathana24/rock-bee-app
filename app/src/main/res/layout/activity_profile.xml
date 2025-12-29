@@ -2,18 +2,116 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@color/bgLight">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtProfile"
-            android:layout_width="wrap_content"
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:padding="24dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_header_gradient">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="👤"
+                android:textSize="40sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_avatar"/>
+
+            <TextView
+                android:text="User"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:text="Field Observer"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+        <!-- PROFILE INFO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:elevation="6dp">
+
+            <TextView
+                android:id="@+id/txtProfile"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primaryDark"/>
+        </LinearLayout>
+
+        <!-- STATS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="5\nReports"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="Active\nStatus"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="Observer\nRole"
+                android:textStyle="bold"
+                android:background="@drawable/bg_card"/>
+        </LinearLayout>
+
+        <!-- BUTTONS -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/primaryYellow"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            android:textStyle="bold"
+            android:backgroundTint="#FFCDD2"/>
+
     </LinearLayout>
 </ScrollView>

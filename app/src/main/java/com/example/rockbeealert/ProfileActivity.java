@@ -14,12 +14,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         TextView txtProfile = findViewById(R.id.txtProfile);
 
-        txtProfile.setText(
-                "User Profile\n\n" +
-                        "Name: User\n" +
-                        "Role: Field Observer\n" +
-                        "Reports Submitted: 5\n" +
-                        "Status: Active"
-        );
+        if (txtProfile != null) {
+            txtProfile.setText(
+                    "Name: User\n" +
+                            "Role: Field Observer\n" +
+                            "Reports Submitted: 5\n" +
+                            "Status: Active"
+            );
+        }
     }
 }

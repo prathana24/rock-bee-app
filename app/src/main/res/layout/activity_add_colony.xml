@@ -1,112 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgLight">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="24dp">
 
         <!-- TITLE -->
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Rock Bee Colony"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/primaryDark"
-            android:layout_marginBottom="16dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- AI CAMERA -->
         <Button
             android:id="@+id/btnAIDetect"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Capture &amp; AI Detect"
             android:textStyle="bold"
             android:textColor="@color/primaryDark"
-            android:backgroundTint="@color/primaryYellow"/>
+            android:backgroundTint="@color/primaryYellow"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
 
         <!-- AI RESULT -->
         <TextView
             android:id="@+id/txtAIDetails"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="AI Detection Result:\nNot detected"
             android:textColor="@color/primaryDark"
             android:background="@color/cardLight"
             android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnAIDetect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"/>
 
         <!-- LOCATION -->
         <Button
             android:id="@+id/btnLocation"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Capture Location"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/secondaryGreen"
+            app:layout_constraintTop_toBottomOf="@+id/txtAIDetails"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"/>
 
         <TextView
             android:id="@+id/txtLocation"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Location: Not captured"
             android:textColor="@color/primaryDark"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/btnLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android_layout_marginTop="8dp"/>
 
         <!-- AR HEIGHT -->
         <Button
             android:id="@+id/btnARHeight"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="AR Height Estimator"
             android:textColor="@color/primaryDark"
             android:backgroundTint="@color/primaryYellow"
+            app:layout_constraintTop_toBottomOf="@+id/txtLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"/>
 
-        <!-- SAVE -->
-        <Button
-            android:id="@+id/btnSaveColony"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Colony"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:backgroundTint="@color/primaryYellow"
-            android:layout_marginTop="24dp"/>
         <!-- BEE SOUND DETECTION -->
         <Button
             android:id="@+id/btnSound"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Detect Bee Sound"
             android:textStyle="bold"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/secondaryGreen"
+            app:layout_constraintTop_toBottomOf="@+id/btnARHeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"/>
 
         <TextView
             android:id="@+id/txtSoundDetails"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Sound Details: Not detected"
             android:textColor="@color/primaryDark"
             android:background="@color/cardLight"
             android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnSound"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"/>
+
         <!-- GALLERY IMAGE -->
         <Button
             android:id="@+id/btnGallery"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Add Image from Gallery"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/txtSoundDetails"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="12dp"/>
 
-    </LinearLayout>
+        <!-- SAVE -->
+        <Button
+            android:id="@+id/btnSaveColony"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Save Colony"
+            android:textStyle="bold"
+            android:textColor="@color/primaryDark"
+            android:backgroundTint="@color/primaryYellow"
+            app:layout_constraintTop_toBottomOf="@+id/btnGallery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

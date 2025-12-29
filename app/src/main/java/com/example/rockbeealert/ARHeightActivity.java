@@ -3,22 +3,35 @@ package com.example.rockbeealert;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.util.concurrent.ExecutionException;
+
 public class ARHeightActivity extends AppCompatActivity {
 
     private PreviewView previewView;
-    private static final int CAMERA_REQ = 200;
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    startCamera();
+                } else {
+                    Toast.makeText(this, "Camera permission is required to use this feature.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +40,10 @@ public class ARHeightActivity extends AppCompatActivity {
 
         previewView = findViewById(R.id.previewView);
 
-        // 🔐 Runtime permission
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.CAMERA},
-                    CAMERA_REQ
-            );
-        } else {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             startCamera();
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA);
         }
     }
 
@@ -48,8 +53,7 @@ public class ARHeightActivity extends AppCompatActivity {
 
         cameraProviderFuture.addListener(() -> {
             try {
-                ProcessCameraProvider cameraProvider =
-                        cameraProviderFuture.get();
+                ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
 
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
@@ -64,26 +68,9 @@ public class ARHeightActivity extends AppCompatActivity {
                         preview
                 );
 
-            } catch (Exception e) {
+            } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
         }, ContextCompat.getMainExecutor(this));
-    }
-
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
-
-        if (requestCode == CAMERA_REQ &&
-                grantResults.length > 0 &&
-                grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            startCamera();
-        }
     }
 }

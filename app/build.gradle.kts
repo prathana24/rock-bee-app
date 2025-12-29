@@ -5,7 +5,6 @@ plugins {
 android {
     namespace = "com.example.rockbeealert"
 
-    // ✅ REQUIRED to fix your AAR metadata errors
     compileSdk = 36
 
     defaultConfig {
@@ -46,19 +45,10 @@ android {
 }
 
 dependencies {
-
-
-        // CameraX
-        implementation ("androidx.camera:camera-core:1.3.2")
-        implementation( "androidx.camera:camera-camera2:1.3.2")
-        implementation ("androidx.camera:camera-lifecycle:1.3.2")
-        implementation ("androidx.camera:camera-view:1.3.2")
-
-
-
     // 🔹 AndroidX Core
+    implementation("androidx.activity:activity:1.9.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.core:core-ktx:1.16.0")
+    implementation("androidx.core:core-ktx:1.13.1")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
 

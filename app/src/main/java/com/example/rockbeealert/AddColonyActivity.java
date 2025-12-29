@@ -12,16 +12,62 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class AddColonyActivity extends AppCompatActivity {
 
-    private static final int REQ_CAMERA = 101;
-    private static final int REQ_GALLERY = 102;
-    private static final int REQ_MIC = 201;
+    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                    if (bitmap != null) {
+                        runFakeAI(bitmap);
+                    }
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                                this.getContentResolver(),
+                                result.getData().getData()
+                        );
+                        if (bitmap != null) {
+                            runFakeAI(bitmap);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        toast("Failed to load image from gallery");
+                    }
+                }
+            });
+
+    private final ActivityResultLauncher<String> micPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    startBeeSoundDetection();
+                } else {
+                    toast("Microphone permission is required to detect bee sounds.");
+                }
+            });
+
+    private final ActivityResultLauncher<String> cameraPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    cameraLauncher.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+                } else {
+                    toast("Camera permission is required to capture images.");
+                }
+            });
 
     TextView txtAIDetails, txtLocation, txtSoundDetails;
 
@@ -48,33 +94,26 @@ public class AddColonyActivity extends AppCompatActivity {
         txtLocation = findViewById(R.id.txtLocation);
 
         /* CAMERA */
-        btnAIDetect.setOnClickListener(v ->
-                startActivityForResult(
-                        new Intent(MediaStore.ACTION_IMAGE_CAPTURE),
-                        REQ_CAMERA
-                )
-        );
+        btnAIDetect.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                cameraLauncher.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+            } else {
+                cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+            }
+        });
 
         /* GALLERY */
         btnGallery.setOnClickListener(v ->
-                startActivityForResult(
-                        new Intent(Intent.ACTION_PICK,
-                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI),
-                        REQ_GALLERY
-                )
+                galleryLauncher.launch(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
         );
 
         /* SOUND */
         btnSound.setOnClickListener(v -> {
-            if (!hasMicPermission()) {
-                ActivityCompat.requestPermissions(
-                        this,
-                        new String[]{Manifest.permission.RECORD_AUDIO},
-                        REQ_MIC
-                );
-                return;
+            if (hasMicPermission()) {
+                startBeeSoundDetection();
+            } else {
+                micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
             }
-            startBeeSoundDetection();
         });
 
         /* LOCATION */
@@ -107,36 +146,6 @@ public class AddColonyActivity extends AppCompatActivity {
             toast("Colony saved successfully");
             finish();
         });
-    }
-
-    /* CAMERA + GALLERY RESULT */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != RESULT_OK || data == null) return;
-
-        Bitmap bitmap = null;
-
-        try {
-            if (requestCode == REQ_CAMERA) {
-                bitmap = (Bitmap) data.getExtras().get("data");
-            } else if (requestCode == REQ_GALLERY) {
-                bitmap = MediaStore.Images.Media.getBitmap(
-                        this.getContentResolver(),
-                        data.getData()
-                );
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (bitmap == null) {
-            toast("Image capture failed");
-            return;
-        }
-
-        runFakeAI(bitmap);
     }
 
     /* AI LOGIC (WORKING DEMO) */
@@ -196,7 +205,7 @@ public class AddColonyActivity extends AppCompatActivity {
                     );
                     soundDone = true;
 
-                } catch (Exception e) {
+                } catch (IllegalStateException e) {
                     showSoundFallback();
                 }
             }, 2000);
@@ -218,20 +227,6 @@ public class AddColonyActivity extends AppCompatActivity {
                 this,
                 Manifest.permission.RECORD_AUDIO
         ) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-
-        if (requestCode == REQ_MIC &&
-                grantResults.length > 0 &&
-                grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            toast("Microphone permission granted");
-        }
     }
 
     private void toast(String msg) {

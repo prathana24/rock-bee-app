@@ -1,98 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bgLight">
 
     <!-- HEADER -->
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp"
+        android:background="@drawable/bg_header_gradient"
         android:orientation="vertical"
-        android:background="@drawable/bg_header_gradient">
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🐝 RockBee Alert"
+            android:textColor="@android:color/white"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:text="Detect • Report • Stay Safe"
-            android:textSize="14sp"
             android:textColor="@android:color/white"
-            android:layout_marginTop="6dp"/>
+            android:textSize="14sp" />
     </LinearLayout>
 
     <!-- MAIN CONTENT -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintTop_toBottomOf="@+id/header">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="20dp">
 
             <!-- ADD COLONY CARD -->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addColonyCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
                 android:background="@drawable/bg_card"
-                android:elevation="6dp">
+                android:elevation="6dp"
+                android:padding="20dp"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/addColonyTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="📍 Report a Rock Bee Colony"
+                    android:textColor="@color/primaryDark"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primaryDark"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/addColonySubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:text="Capture images, sound &amp; location"
                     android:textSize="13sp"
-                    android:layout_marginTop="6dp"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addColonyTitle" />
 
                 <Button
                     android:id="@+id/btnAddColony"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Add Colony"
-                    android:textStyle="bold"
-                    android:textColor="@color/primaryDark"
+                    android:layout_marginTop="16dp"
                     android:backgroundTint="@color/primaryYellow"
-                    android:layout_marginTop="16dp"/>
-            </LinearLayout>
+                    android:text="Add Colony"
+                    android:textColor="@color/primaryDark"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addColonySubtitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- QUICK ACTIONS -->
             <TextView
+                android:id="@+id/quickActionsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Quick Actions"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:layout_marginTop="24dp"/>
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addColonyCard" />
 
             <LinearLayout
+                android:id="@+id/quickActionsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 android:weightSum="3"
-                android:layout_marginTop="12dp">
+                app:layout_constraintTop_toBottomOf="@+id/quickActionsTitle">
 
                 <TextView
                     android:layout_width="0dp"
@@ -101,52 +118,53 @@
                     android:background="@drawable/bg_card"
                     android:gravity="center"
                     android:text="🗺 Map"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/bg_card"
                     android:gravity="center"
                     android:text="🚨 Emergency"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/bg_card"
                     android:gravity="center"
                     android:text="📚 Learn"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- SAFETY TIP -->
             <LinearLayout
+                android:id="@+id/safetyTipLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/bg_tip"
-                android:layout_marginTop="24dp">
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/quickActionsLayout">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="⚠️ Safety Tip"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:text="Rock bees can chase threats up to 100m. Do not disturb colonies."
-                    android:textSize="13sp"
-                    android:layout_marginTop="6dp"/>
+                    android:textSize="13sp" />
             </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <!-- BOTTOM NAV -->
@@ -155,6 +173,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bgLight"
-        app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="labeled"/>
-</LinearLayout>
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

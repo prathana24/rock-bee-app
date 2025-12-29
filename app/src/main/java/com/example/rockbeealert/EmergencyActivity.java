@@ -1,5 +1,6 @@
 package com.example.rockbeealert;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class EmergencyActivity extends AppCompatActivity {
 
             try {
                 startActivity(mapIntent);
-            } catch (Exception e) {
+            } catch (ActivityNotFoundException e) {
                 Toast.makeText(
                         this,
                         "Maps app not found",

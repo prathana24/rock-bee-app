@@ -59,9 +59,8 @@ dependencies {
     implementation("androidx.camera:camera-view:1.3.2")
 
     // 🔹 TensorFlow Lite (IMAGE DETECTION)
-    implementation("org.tensorflow:tensorflow-lite:2.14.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.4.3")
-    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.3")
+    // This single dependency includes the necessary support and task libraries
+    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
 
     // 🔹 Location (for colony location capture)
     implementation("com.google.android.gms:play-services-location:21.3.0")

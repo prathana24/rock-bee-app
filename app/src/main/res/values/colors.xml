@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Themed Colors -->
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryVariant">#FFA000</color>
+    <color name="colorOnPrimary">#000000</color>
 
+    <color name="colorSecondary">#4CAF50</color>
+    <color name="colorSecondaryVariant">#388E3C</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#212121</color>
+
+    <color name="colorBackground">#FFFDF7</color>
+    <color name="colorOnBackground">#212121</color>
+
+    <!-- Legacy Colors (for reference) -->
     <color name="bgLight">#FFFDF7</color>
     <color name="cardLight">#FFFFFF</color>
-
     <color name="primaryDark">#3E2723</color>
     <color name="primaryYellow">#FFC107</color>
-
     <color name="secondaryGreen">#2E7D32</color>
-
 </resources>

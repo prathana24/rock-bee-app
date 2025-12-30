@@ -1,117 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgLight">
+    android:background="@color/bgLight"
+    tools:context=".ProfileActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <!-- HEADER -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
-            android:orientation="vertical"
+        <!-- Header Section -->
+        <View
+            android:id="@+id/header_background"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_header_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_avatar"
             android:gravity="center"
-            android:background="@drawable/bg_header_gradient">
+            android:text="👤"
+            android:textColor="@android:color/white"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@+id/user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_background"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:gravity="center"
-                android:text="👤"
-                android:textSize="40sp"
-                android:textColor="@android:color/white"
-                android:background="@drawable/bg_avatar"/>
-
-            <TextView
-                android:text="User"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="12dp"/>
-
-            <TextView
-                android:text="Field Observer"
-                android:textSize="14sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <!-- PROFILE INFO -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:padding="20dp"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:elevation="6dp">
+            android:layout_marginTop="12dp"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/header_background"
+            app:layout_constraintEnd_toEndOf="@+id/avatar"
+            app:layout_constraintStart_toStartOf="@+id/avatar"
+            app:layout_constraintTop_toBottomOf="@+id/avatar"
+            tools:text="User Name" />
 
-            <TextView
-                android:id="@+id/txtProfile"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryDark"/>
-        </LinearLayout>
-
-        <!-- STATS -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Stats Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/stats_card"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_background">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="5\nReports"
-                android:textStyle="bold"
-                android:background="@drawable/bg_card"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:text="Active\nStatus"
-                android:textStyle="bold"
-                android:background="@drawable/bg_card"/>
+                <TextView
+                    android:id="@+id/role_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:text="Observer\nRole"
-                android:textStyle="bold"
-                android:background="@drawable/bg_card"/>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/user_role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryDark"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Field Observer" />
 
-        <!-- BUTTONS -->
-        <Button
-            android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/reports_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Reports Submitted"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/role_label" />
+
+                <TextView
+                    android:id="@+id/reports_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryDark"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/reports_label"
+                    tools:text="5" />
+
+                <TextView
+                    android:id="@+id/status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Status"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reports_label" />
+
+                <TextView
+                    android:id="@+id/user_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryDark"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/status_label"
+                    tools:text="Active" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Action Buttons -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_profile_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/primaryYellow"
             android:text="Edit Profile"
-            android:layout_margin="16dp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/primaryYellow"/>
+            android:textColor="@color/primaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/stats_card"
+            app:layout_constraintStart_toStartOf="@+id/stats_card"
+            app:layout_constraintTop_toBottomOf="@id/stats_card" />
 
-        <Button
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/logout_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Logout"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="24dp"
-            android:textStyle="bold"
-            android:backgroundTint="#FFCDD2"/>
+            android:textColor="@android:color/holo_red_light"
+            app:layout_constraintEnd_toEndOf="@+id/edit_profile_button"
+            app:layout_constraintStart_toStartOf="@+id/edit_profile_button"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_button" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
